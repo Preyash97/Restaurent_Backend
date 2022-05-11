@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Restaurants</title>
+
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+
+<body>
+    <div class="card">
+
+        <b-form inline>
+            <label class="sr-only" for="inline-form-input-name">Name</label>
+            <b-form-input id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Jane Doe">
+            </b-form-input>
+
+            <label class="sr-only" for="inline-form-input-username">Username</label>
+            <b-input-group prepend="@" class="mb-2 mr-sm-2 mb-sm-0">
+                <b-form-input id="inline-form-input-username" placeholder="Username"></b-form-input>
+            </b-input-group>
+
+            <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0">Remember me</b-form-checkbox>
+
+            <b-button variant="primary">Save</b-button>
+        </b-form>
+
+    </div>
+    <div class="card">
+        <div class="card-body">
+            {{#if restaurantData}}
+            <h1>Restaurant Details</h1>
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Resturant Id</th>
+                        <th>Address</th>
+                        <th>Borough</th>
+                        <th>Cuisine</th>
+                        <th>Grade</th>
+                        <th>Grade Date</th>
+                        <th>Grade Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each restaurantData}}
+                    <tr>
+                        <td rowspan="{{arraySize this.grades}}">{{this.name}}</td>
+                        <td rowspan="{{arraySize this.grades}}">{{this.restaurant_id}}</td>
+                        <td rowspan="{{arraySize this.grades}}">{{this.address.building}} {{this.address.street}}
+                            {{this.address.zipcode}}</td>
+                        <td rowspan="{{arraySize this.grades}}">{{this.borough}}</td>
+                        <td rowspan="{{arraySize this.grades}}">{{this.cuisine}}</td>
+                        {{#each this.grades}}
+                    <tr>
+                        <td>{{this.grade}}</td>
+                        <td>{{this.date}}</td>
+                        <td>{{this.score}}</td>
+                    </tr>
+                    {{/each}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{/if}}
+        </div>
+    </div>
+</body>
+
+</html>
